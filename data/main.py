@@ -4,6 +4,7 @@ from operations.printer import print_graph
 from operations.find import find_edge
 from operations.bfs import run_bfs , get_neighbors
 from operations.dfs import run_dfs
+from operations.visualize import export_visuals
 
 def mode_generate(rep_type):
     try:
@@ -100,6 +101,9 @@ def main():
                 wynik_str = " ".join(str(node) for node in wynik)
             
                 print(f"Inline: {wynik_str}")
+            
+            elif action in ["export", "visualize"]:
+                export_visuals(graph)
                 
             elif action in ["exit", "quit", ""]:
                 break
