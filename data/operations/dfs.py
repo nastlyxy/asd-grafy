@@ -1,4 +1,4 @@
-def run_bfs(start_node,get_neighbors):
+def run_dfs(start_node,get_neighbors):
 
     visited = set()            
     result = []
