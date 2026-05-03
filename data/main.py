@@ -2,7 +2,8 @@ import sys
 from graph import Graph
 from operations.printer import print_graph
 from operations.find import find_edge
-from operations.bfs import run_bfs
+from operations.bfs import run_bfs , get_neighbors
+from operations.dfs import run_dfs
 
 def mode_generate(rep_type):
     try:
@@ -90,6 +91,15 @@ def main():
                 wynik_str = " ".join(str(node) for node in wynik)
                 print(f"Inline: {wynik_str}")
 
+            elif action in ["dfs", "depth-first-search", "depth first search"]:
+               
+                def neighbouor_accessor(node):
+                    return get_neighbors(graph, node, rep_type)
+                
+                wynik = run_dfs(1,neighbouor_accessor)
+                wynik_str = " ".join(str(node) for node in wynik)
+            
+                print(f"Inline: {wynik_str}")
                 
             elif action in ["exit", "quit", ""]:
                 break
