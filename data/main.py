@@ -1,5 +1,6 @@
 import sys
 from graph import Graph
+from operations.printer import print_graph
 
 def mode_generate(rep_type):
     try:
@@ -69,7 +70,7 @@ def main():
             action = input("action> ").strip().lower()
             
             if action == "print":
-                print("Funkcja Print jeszcze nie zaimplementowana.")
+                print_graph(graph, rep_type)
                 
             elif action == "find":
                 u = int(input("from> "))
