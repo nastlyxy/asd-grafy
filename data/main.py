@@ -2,6 +2,7 @@ import sys
 from graph import Graph
 from operations.printer import print_graph
 from operations.find import find_edge
+from operations.bfs import run_bfs
 
 def mode_generate(rep_type):
     try:
@@ -82,6 +83,13 @@ def main():
                     print(f"Edge ({u}, {v}) exists.")
                 else:
                     print(f"Edge ({u}, {v}) does not exist.")
+
+            elif action in ["bfs", "breadth-first-search", "breadth first search"]:
+
+                wynik = run_bfs(graph, start_node=1, rep_type=rep_type)
+                wynik_str = " ".join(str(node) for node in wynik)
+                print(f"Inline: {wynik_str}")
+
                 
             elif action in ["exit", "quit", ""]:
                 break
