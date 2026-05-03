@@ -1,6 +1,7 @@
 import sys
 from graph import Graph
 from operations.printer import print_graph
+from operations.find import find_edge
 
 def mode_generate(rep_type):
     try:
@@ -76,6 +77,11 @@ def main():
                 u = int(input("from> "))
                 v = int(input("to> "))
                 print(f"Szukanie krawędzi ({u}, {v})...")
+                
+                if find_edge(graph, u, v):
+                    print(f"Edge ({u}, {v}) exists.")
+                else:
+                    print(f"Edge ({u}, {v}) does not exist.")
                 
             elif action in ["exit", "quit", ""]:
                 break
