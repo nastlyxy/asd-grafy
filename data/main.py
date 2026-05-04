@@ -79,12 +79,11 @@ def main():
             elif action == "find":
                 u = int(input("from> "))
                 v = int(input("to> "))
-                print(f"Szukanie krawędzi ({u}, {v})...")
                 
-                if find_edge(graph, u, v):
-                    print(f"Edge ({u}, {v}) exists.")
+                if find_edge(graph, u, v, rep_type):
+                    print(f"True: edge ({u},{v}) exists in the Graph")
                 else:
-                    print(f"Edge ({u}, {v}) does not exist.")
+                    print(f"False: edge ({u},{v}) does not exist in the Graph")
 
             elif action in ["bfs", "breadth-first-search", "breadth first search"]:
 
