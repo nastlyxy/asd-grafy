@@ -5,6 +5,7 @@ from operations.find import find_edge
 from operations.bfs import run_bfs , get_neighbors
 from operations.dfs import run_dfs
 from operations.visualize import export_visuals
+from operations.sorts import kahn_sort, tarjan_sort
 
 def mode_generate(rep_type):
     try:
@@ -72,6 +73,8 @@ def main():
     while True:
         try:
             action = input("action> ").strip().lower()
+
+
             
             if action == "print":
                 print_graph(graph, rep_type)
@@ -79,12 +82,11 @@ def main():
             elif action == "find":
                 u = int(input("from> "))
                 v = int(input("to> "))
-                print(f"Szukanie krawędzi ({u}, {v})...")
                 
-                if find_edge(graph, u, v):
-                    print(f"Edge ({u}, {v}) exists.")
+                if find_edge(graph, u, v, rep_type):
+                    print(f"True: edge ({u},{v}) exists in the Graph")
                 else:
-                    print(f"Edge ({u}, {v}) does not exist.")
+                    print(f"False: edge ({u},{v}) does not exist in the Graph")
 
             elif action in ["bfs", "breadth-first-search", "breadth first search"]:
 
@@ -104,6 +106,34 @@ def main():
             
             elif action in ["export", "visualize"]:
                 export_visuals(graph)
+
+            elif action == "kahn":
+                try:
+                    wynik = kahn_sort(graph, rep_type)
+                    wynik_str = " ".join(str(node) for node in wynik)
+                    print(f"Topological sort (Kahn): {wynik_str}")
+                except ValueError as e:
+                    print(f"Błąd: {e}")
+
+            elif action == "tarjan":
+                try:
+                    wynik = tarjan_sort(graph, rep_type)
+                    wynik_str = " ".join(str(node) for node in wynik)
+                    print(f"Topological sort (Tarjan): {wynik_str}")
+                except ValueError as e:
+                    print(f"Błąd: {e}")  
+
+            elif action == "help":
+                print("Dostępne komendy:")
+                print("  print     - Wypisanie grafu w wybranej reprezentacji")
+                print("  find      - Szukanie krawędzi (od u do v)")
+                print("  bfs       - Przechodzenie wszerz grafu")
+                print("  dfs       - Przechodzenie w głąb grafu")
+                print("  kahn      - Sortowanie topologiczne (Algorytm Kahna)")
+                print("  tarjan    - Sortowanie topologiczne (Algorytm Tarjana)")
+                print("  export    - Eksport grafu do formatu LaTeX (TikZ)")
+                print("  help      - Wyświetlenie tej wiadomości")
+                print("  exit/quit - Zakończenie programu")          
                 
             elif action in ["exit", "quit", ""]:
                 break

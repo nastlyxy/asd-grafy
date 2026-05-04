@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+
+\begin{center}
+\begin{tikzpicture}[>=stealth, node distance=2cm, every node/.style={circle, draw=blue!80!black, fill=blue!15, thick, minimum size=8mm, font=\bfseries}]
+  \node (1) at (0.0:3cm) {1};
+  \node (2) at (60.0:3cm) {2};
+  \node (3) at (120.0:3cm) {3};
+  \node (4) at (180.0:3cm) {4};
+  \node (5) at (240.0:3cm) {5};
+  \node (6) at (300.0:3cm) {6};
+
+  \draw[->] (1) -- (2);
+  \draw[->] (2) -- (3);
+  \draw[->] (2) -- (4);
+  \draw[->] (2) -- (5);
+  \draw[->] (2) -- (6);
+  \draw[->] (3) -- (6);
+\end{tikzpicture}
+\end{center}
+
+\end{document}

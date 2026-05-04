@@ -34,7 +34,7 @@ def export_visuals(graph_obj, filename="graph_visualization.tex"):
             f.write("\\begin{document}\n\n")
             
             f.write("\\begin{center}\n")
-            f.write("\\begin{tikzpicture}[>=stealth, node distance=2cm, every node/.style={circle, draw, thick, minimum size=8mm}]\n")
+            f.write("\\begin{tikzpicture}[>=stealth, node distance=2cm, every node/.style={circle, draw=blue!80!black, fill=blue!15, thick, minimum size=8mm, font=\\bfseries}]\n")
             
             
             if total_nodes > 0:

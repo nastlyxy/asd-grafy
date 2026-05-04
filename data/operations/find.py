@@ -1,20 +1,12 @@
-def find_edge(graph_obj, u, v):
+from operations.bfs import get_neighbors
 
-    graf_data = graph_obj.get_list()
-
+def find_edge(graph_obj, u, v, rep_type):
     try:
-        if isinstance(graf_data, dict):
-            neighbors = graf_data.get(u, [])
-        else:
-            if 1 <= u <= graph_obj.nodes:
-                neighbors = graf_data[u - 1]
-            else:
-                neighbours = []
-
-
+        neighbors = get_neighbors(graph_obj, u, rep_type)
+        
         if v in neighbors:
             return True
-        
-    except (IndexError, KeyError):
+    except Exception:
         pass
+        
     return False
