@@ -5,6 +5,7 @@ from operations.find import find_edge
 from operations.bfs import run_bfs , get_neighbors
 from operations.dfs import run_dfs
 from operations.visualize import export_visuals
+from operations.sorts import kahn_sort, tarjan_sort
 
 def mode_generate(rep_type):
     try:
@@ -103,6 +104,22 @@ def main():
             
             elif action in ["export", "visualize"]:
                 export_visuals(graph)
+
+            elif action == "kahn":
+                try:
+                    wynik = kahn_sort(graph, rep_type)
+                    wynik_str = " ".join(str(node) for node in wynik)
+                    print(f"Topological sort (Kahn): {wynik_str}")
+                except ValueError as e:
+                    print(f"Błąd: {e}")
+
+            elif action == "tarjan":
+                try:
+                    wynik = tarjan_sort(graph, rep_type)
+                    wynik_str = " ".join(str(node) for node in wynik)
+                    print(f"Topological sort (Tarjan): {wynik_str}")
+                except ValueError as e:
+                    print(f"Błąd: {e}")    
                 
             elif action in ["exit", "quit", ""]:
                 break
