@@ -73,6 +73,8 @@ def main():
     while True:
         try:
             action = input("action> ").strip().lower()
+
+
             
             if action == "print":
                 print_graph(graph, rep_type)
@@ -119,7 +121,19 @@ def main():
                     wynik_str = " ".join(str(node) for node in wynik)
                     print(f"Topological sort (Tarjan): {wynik_str}")
                 except ValueError as e:
-                    print(f"Błąd: {e}")    
+                    print(f"Błąd: {e}")  
+
+            elif action == "help":
+                print("Dostępne komendy:")
+                print("  print     - Wypisanie grafu w wybranej reprezentacji")
+                print("  find      - Szukanie krawędzi (od u do v)")
+                print("  bfs       - Przechodzenie wszerz grafu")
+                print("  dfs       - Przechodzenie w głąb grafu")
+                print("  kahn      - Sortowanie topologiczne (Algorytm Kahna)")
+                print("  tarjan    - Sortowanie topologiczne (Algorytm Tarjana)")
+                print("  export    - Eksport grafu do formatu LaTeX (TikZ)")
+                print("  help      - Wyświetlenie tej wiadomości")
+                print("  exit/quit - Zakończenie programu")          
                 
             elif action in ["exit", "quit", ""]:
                 break
