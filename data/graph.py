@@ -8,17 +8,19 @@ class Graph:
 
     @classmethod
     def generate_dag(cls, nodes, saturation, rep_type):
-        
         graph = cls(nodes, rep_type)
         max_edges = (nodes * (nodes - 1)) // 2
         target_edges = int(max_edges * (saturation / 100.0))
         
         current_edges = 0
         
-        for i in range(1, nodes):
-            graph.adj_list[i].append(i + 1)
-            current_edges += 1
-            
+    
+        if nodes > 1:
+            for j in range(2, nodes + 1):
+                i = random.randint(1, j - 1)
+                graph.adj_list[i].append(j)
+                current_edges += 1
+                
         while current_edges < target_edges:
             i = random.randint(1, nodes - 1)
             j = random.randint(i + 1, nodes)
