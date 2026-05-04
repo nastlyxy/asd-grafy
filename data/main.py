@@ -1,5 +1,10 @@
 import sys
 from graph import Graph
+from operations.printer import print_graph
+from operations.find import find_edge
+from operations.bfs import run_bfs , get_neighbors
+from operations.dfs import run_dfs
+from operations.visualize import export_visuals
 
 def mode_generate(rep_type):
     try:
@@ -69,12 +74,36 @@ def main():
             action = input("action> ").strip().lower()
             
             if action == "print":
-                print("Funkcja Print jeszcze nie zaimplementowana.")
+                print_graph(graph, rep_type)
                 
             elif action == "find":
                 u = int(input("from> "))
                 v = int(input("to> "))
                 print(f"Szukanie krawędzi ({u}, {v})...")
+                
+                if find_edge(graph, u, v):
+                    print(f"Edge ({u}, {v}) exists.")
+                else:
+                    print(f"Edge ({u}, {v}) does not exist.")
+
+            elif action in ["bfs", "breadth-first-search", "breadth first search"]:
+
+                wynik = run_bfs(graph, start_node=1, rep_type=rep_type)
+                wynik_str = " ".join(str(node) for node in wynik)
+                print(f"Inline: {wynik_str}")
+
+            elif action in ["dfs", "depth-first-search", "depth first search"]:
+               
+                def neighbouor_accessor(node):
+                    return get_neighbors(graph, node, rep_type)
+                
+                wynik = run_dfs(1,neighbouor_accessor)
+                wynik_str = " ".join(str(node) for node in wynik)
+            
+                print(f"Inline: {wynik_str}")
+            
+            elif action in ["export", "visualize"]:
+                export_visuals(graph)
                 
             elif action in ["exit", "quit", ""]:
                 break
