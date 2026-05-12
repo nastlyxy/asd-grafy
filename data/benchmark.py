@@ -40,8 +40,9 @@ def uruchom_benchmark():
 
             #krawedzie
             start = time.perf_counter()
-            find_edge(graph_obj, u, v, rep)
-            czasy_krawedzie[rep] = (time.perf_counter() - start) * 1000
+            for _ in range(100):
+                find_edge(graph_obj, u, v, rep)
+            czasy_krawedzie[rep] = ((time.perf_counter() - start) / 100) * 1000
 
             #sortowanie kahna
             start = time.perf_counter()
